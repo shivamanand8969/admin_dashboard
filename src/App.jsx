@@ -1,13 +1,23 @@
+import { ThemeProvider } from "@emotion/react";
+import { ColorModeContext, useMode } from "./theme"
+import CssBaseline from "@mui/material/CssBaseline";
+import Topbar from "./scenes/global/Topbar";
 
 function app() {
-  const [count, setCount] = useState(0)
-
+  const [theme, colorMode] = useMode();
   return (
-   <>
-   <div>
-    Hello
-   </div>
-   </>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className="app">
+          <main className="content">
+            <Topbar/>
+          </main>
+
+        </div>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+
   )
 }
 
